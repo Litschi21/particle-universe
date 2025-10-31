@@ -19,7 +19,11 @@ class Obj:
 
         self.orbiting = orbiting
         self.orb = orb
-        self.orb_dist = orb_dist*dist_mult
+
+        try:
+            self.orb_dist = orb_dist*dist_mult
+        except TypeError:
+            self.orb_dist = None
 
         self.add_vel = (0, None)
         self.orb_vel = None
@@ -102,11 +106,10 @@ def run(*args):
             else:
                 clr = j.clr
 
-            merged = Obj(pos, t_mass, rad, vel, color=clr)
+            merged = Obj(pos, t_mass, rad / rad_scale, vel, color=clr)
 
             objects.remove(i)
             objects.remove(j)
-            objects.append(merged)
         
         for i in objects:
             i.update_trail_hist()
@@ -114,7 +117,7 @@ def run(*args):
             if len(i.trail_hist) > 1:
                 pygame.draw.lines(screen, i.clr, False, i.trail_hist, 1)
 
-            pygame.draw.circle(screen, i.clr, (int(i.pos.x), int(i.pos.y)), max(int(i.rad * rad_scale / 2e4), 1))
+            pygame.draw.circle(screen, i.clr, (int(i.pos.x), int(i.pos.y)), max(int(i.rad / 2e4), 1))
         
         for arg in args:
             print(arg)
