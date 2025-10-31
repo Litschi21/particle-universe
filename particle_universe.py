@@ -5,7 +5,7 @@ class Obj:
     def __init__(self, position, mass, radius, velocity=(0, 0), acceleration=(0, 0), orbiting=False, orb=None, orb_dist=None, color="white"):
         self.pos = pygame.Vector2(position)
         self.mass = mass
-        self.rad = radius
+        self.rad = radius*rad_scale
         self.vel = pygame.Vector2(velocity)
         self.acc = pygame.Vector2(acceleration)
         self.clr = color
@@ -19,6 +19,7 @@ class Obj:
         self.trail_hist = []
 
         self.calc_orb_vel()
+        objects.append(self)
 
     def update_trail_hist(self):
         if len(self.trail_hist) >= 1:
