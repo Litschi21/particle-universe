@@ -16,7 +16,7 @@ pip install -r requirements.txt
 from particle_universe import *
 
 star_mass = 1.989 * 10**30
-Star = Obj((width // 2, height // 2), star_mass, 696340, color="yellow")
+Star = Obj((width // 2, height // 2), star_mass, 695700, color="yellow")
 
 run()
 ```
