@@ -1,8 +1,15 @@
 import math
 import pygame
 
+pygame.init()
+width = 2560
+height = 1440
+screen = pygame.display.set_mode((width, height))
+clock = pygame.time.Clock()
+FPS = 60
+
 class Obj:
-    def __init__(self, position, mass, radius, velocity=(0, 0), acceleration=(0, 0), orbiting=False, orb=None, orb_dist=None, color="white"):
+    def __init__(self, position=(width // 2, height // 2), mass=1.9891*10**30, radius=695700, velocity=(0, 0), acceleration=(0, 0), orbiting=False, orb=None, orb_dist=None, color="white"):
         self.pos = pygame.Vector2(position)
         self.mass = mass
         self.rad = radius*rad_scale
@@ -12,7 +19,7 @@ class Obj:
 
         self.orbiting = orbiting
         self.orb = orb
-        self.orb_dist = orb_dist
+        self.orb_dist = orb_dist*dist_mult
 
         self.add_vel = (0, None)
         self.orb_vel = None
@@ -36,12 +43,6 @@ class Obj:
             else:
                 self.vel = pygame.Vector2(0, -self.orb_vel)
 
-pygame.init()
-width = 2560
-height = 1440
-screen = pygame.display.set_mode((width, height))
-clock = pygame.time.Clock()
-FPS = 60
 
 scale = 1e9
 rad_scale = 1
